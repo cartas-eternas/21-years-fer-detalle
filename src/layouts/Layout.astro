@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	:root {
+		--breach-red: #E50000;
+		--bg-black: #050505; 
+		--card-bg: #0A0A0A;
+		--text-white: #F0F0F0;
+		--border-dark: #1A1A1A;
+	}
+	html {
+		font-family: 'Share Tech Mono', monospace;
+		background: var(--bg-black);
+		color: var(--text-white);
+	}
+	body {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	h1, h2, h3 {
+		text-transform: uppercase;
+		color: var(--breach-red);
+		letter-spacing: 2px;
+		margin: 0;
+	}
+	a {
+		color: var(--text-white);
+		text-decoration: none;
+	}
+	::selection {
+		background: var(--breach-red);
+		color: var(--text-white);
+	}
+</style>
