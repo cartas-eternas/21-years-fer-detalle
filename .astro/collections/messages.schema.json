@@ -9,10 +9,14 @@
       "type": "string",
       "enum": [
         "text",
-        "video"
+        "video",
+        "image"
       ]
     },
     "videoUrl": {
+      "type": "string"
+    },
+    "imageUrl": {
       "type": "string"
     },
     "$schema": {

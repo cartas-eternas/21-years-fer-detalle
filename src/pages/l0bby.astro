@@ -2,10 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const allMessages = await getCollection('messages');
+const allMessages = await getCollection("messages");
+console.log(allMessages.length);
 ---
 
-<Layout title="¡FIESTA INICIADA! LOBBY">
+<Layout title="MAFI 21 | DEDICATORIAS">
     <script is:inline src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
@@ -14,20 +15,52 @@ const allMessages = await getCollection('messages');
     <div class="grain-overlay" aria-hidden="true"></div>
 
     <div id="seal-overlay">
+    <div class="seal-scene">
         <div class="seal-frame">
-            <button id="seal-button" class="wax-seal" aria-label="Romper el sello">
-                <svg class="seal-ring" viewBox="0 0 200 200" aria-hidden="true">
-                    <path id="sealRingPath" fill="none" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"/>
-                    <text><textPath href="#sealRingPath" startOffset="0%" textLength="534" lengthAdjust="spacingAndGlyphs">ROMPE EL SELLO • ROMPE EL SELLO •</textPath></text>
-                </svg>
-                <span class="seal-core">
-                    <span class="seal-number">21</span>
-                </span>
-            </button>
-            <p class="seal-hint">TOCA EL SELLO</p>
+
+            <p class="seal-eyebrow"></p>
+
+            <div class="seal-candles" aria-hidden="true">
+                <div class="seal-candle candle-l">
+                    <div class="sc-flame"></div>
+                    <div class="sc-body"></div>
+                </div>
+                <button id="seal-button" class="wax-seal" aria-label="">
+                    <svg class="seal-ring" viewBox="0 0 200 200" aria-hidden="true">
+                        <path id="sealRingPath" fill="none" d="M 100,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/>
+                        <text><textPath href="#sealRingPath" startOffset="0%" textLength="502" lengthAdjust="spacingAndGlyphs"></textPath></text>
+                    </svg>
+                    <span class="seal-core">
+                        <span class="seal-symbol"></span>
+                        <span class="seal-number">21</span>
+                        <span class="seal-divider"></span>
+                        <span class="seal-sub-text"></span>
+                    </span>
+                </button>
+                <div class="seal-candle candle-r">
+                    <div class="sc-flame"></div>
+                    <div class="sc-body"></div>
+                </div>
+            </div>
+
+            <div class="seal-hint-wrap">
+                <span class="hint-line"></span>
+                <p class="seal-hint">TOCA PARA ABRIR</p>
+                <span class="hint-line hint-line-r"></span>
+            </div>
+
         </div>
     </div>
 
+    <div class="seal-overlay-deco" aria-hidden="true">
+        <span class="float-rune r1">✦</span>
+        <span class="float-rune r2">✧</span>
+        <span class="float-rune r3">✦</span>
+        <span class="float-rune r4">✧</span>
+        <span class="float-rune r5">✦</span>
+        <span class="float-rune r6">✧</span>
+    </div>
+</div>
     <div class="bg-wallpaper"></div>
     <div class="bg-grid"></div>
     <div class="bg-vignette"></div>
@@ -42,7 +75,7 @@ const allMessages = await getCollection('messages');
 
     <main class="container" id="main-content">
         <header class="header">
-            <p class="header-eyebrow gsap-fade">· TRANSMISIÓN ESPECIAL · NIVEL DE ACCESO: CUMPLEAÑOS ·</p>
+            <p class="header-eyebrow gsap-fade"></p>
 
             <div class="badge-wrapper">
                 <svg class="candle-flame flame-left" viewBox="0 0 24 24" aria-hidden="true">
@@ -50,7 +83,8 @@ const allMessages = await getCollection('messages');
                 </svg>
                 <svg class="rotating-badge" viewBox="0 0 100 100">
                     <path id="circlePath" fill="none" d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"/>
-                </svg>
+                    <text><textPath href="#circlePath" startOffset="0%">21 21 21 21 21 21 21 21 21 21 21 21 21 </textPath></text>
+                </svg> 
                 <div class="badge-center">21</div>
                 <svg class="candle-flame flame-right" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 2c-2.2 3.6-6 6.4-6 10.6a6 6 0 0 0 12 0c0-4.2-3.8-7-6-10.6z"/>
@@ -58,37 +92,58 @@ const allMessages = await getCollection('messages');
             </div>
 
             <h1 class="main-title">
-                <span class="title-solid">TWENTY ONE</span>
-                    <span class="title-outline crossed-out">PILOTS</span>
-                        <span class="title-solid">YEARS</span>
+                <span class="title-solid">Twenty One</span>
+                <span class="title-outline crossed-out">Pilots</span>
+                <span class="title-solid">Years</span>
             </h1>
 
-            <div class="welcome-box gsap-welcome">
-                <p class="welcome-text">¡Tus amigos y familia te hemos preparado algo muy especial!</p>
-            </div>
         </header>
 
         <div class="grid-title gsap-fade">
-            <h2>&gt; REGALOS_LISTOS [{allMessages.length}]</h2>
-            <p class="grid-subtitle">Cada tarjeta esconde una dedicatoria. Ábrelas todas.</p>
+            <div class="grid-title-inner">
+                <h2>TUS AMIGOS, FAMILIA Y YO TE HEMOS PREPARADO ALGO <3 <span class="counter"></span></h2>
+                <p class="grid-subtitle">Cada sobre guarda una dedicatoria. Ábrelos todos.</p>
+            </div>
         </div>
 
         <div class="grid">
             {allMessages.map((message, index) => (
-                <a href={`/${message.id}`} class="gift-card gsap-card">
-                    <span class="washi-tape" aria-hidden="true"></span>
-                    <div class="card-glitch-bg"></div>
-                    <div class="card-number">{(index + 1).toString().padStart(2, '0')}</div>
-                    <div class="gift-icon">
-                        <svg viewBox="0 0 24 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 1C6.5 1 2 5.8 2 11.5 2 17 6 21 10.3 23.6a2.2 2.2 0 0 0 3.4 0C18 21 22 17 22 11.5 22 5.8 17.5 1 12 1Z"></path>
-                            <path d="M12 23.8 11 26.5"></path>
-                            <path d="M11 26.5c-2 .8-2 2.4 0 3.2"></path>
-                            <path d="M11 29.7c2 .8 2 2.1 0 2.3"></path>
-                        </svg>
+                <a href={`/${message.id}`} class="envelope-card gsap-card" data-index={index}>
+                    <div class="env-bg-glow"></div>
+                    <div class="env-back"></div>
+                    <div class="env-flap-back"></div>
+                    <div class="env-flap-front">
+                        <div class="flap-inner-fold"></div>
                     </div>
-                    <div class="gift-sender"><span class="highlight">{message.data.sender}</span></div>
-                    <div class="click-hint">toca para leer</div>
+                    <div class="env-body">
+                        <div class="env-corner tl"></div>
+                        <div class="env-corner tr"></div>
+                        <div class="env-corner bl"></div>
+                        <div class="env-corner br"></div>
+                        <div class="env-postmark" aria-hidden="true">
+                            <svg viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="27" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+                                <text x="50%" y="34%" text-anchor="middle" dominant-baseline="middle" font-size="7" letter-spacing="1">PARA</text>
+                                <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-size="7" letter-spacing="1">FER</text>
+                                <text x="50%" y="70%" text-anchor="middle" dominant-baseline="middle" font-size="5.5" letter-spacing="0.5">21 AÑOS</text>
+                            </svg>
+                        </div>
+                        <div class="env-number" aria-hidden="true">{(index + 1).toString().padStart(2, '0')}</div>
+                        <div class="env-wax-seal" aria-hidden="true">
+                            <div class="mini-seal-inner"><span>❧</span></div>
+                        </div>
+                        <div class="env-sender-label">
+                            <span class="env-from-label">de</span>
+                            <span class="env-sender-name">{message.data.sender}</span>
+                        </div>
+                        <div class="env-open-hint">
+                            <span>abrir carta</span>
+                            <svg viewBox="0 0 24 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M1 5h20M16 1l5 4-5 4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="env-shine"></div>
                 </a>
             ))}
         </div>
@@ -98,249 +153,369 @@ const allMessages = await getCollection('messages');
         </footer>
     </main>
 
-    <script is:inline>
-        function fireConfetti() {
-            const duration = 3000;
-            const end = Date.now() + duration;
-            const colors = ['#E50000', '#FCE300', '#FFFFFF', '#111111'];
+<script is:inline>
+    function fireConfetti() {
+        const duration = 3000;
+        const end = Date.now() + duration;
+        const colors = ['#E50000', '#FCE300', '#FFFFFF', '#111111'];
+        (function frame() {
+            confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: 0.9 }, colors });
+            confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: 0.9 }, colors });
+            if (Date.now() < end) requestAnimationFrame(frame);
+        }());
+    }
 
-            (function frame() {
-                confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: 0.9 }, colors: colors });
-                confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: 0.9 }, colors: colors });
-                if (Date.now() < end) requestAnimationFrame(frame);
-            }());
+    const dot = document.getElementById('cursor-dot');
+    const outline = document.getElementById('cursor-outline');
+    window.addEventListener('mousemove', (e) => {
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
+        gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15, ease: "power2.out" });
+    });
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const SEAL_KEY = 'mafi21_seal_broken';
+
+    function revealSite(withAnimation) {
+        const mainContent = document.getElementById('main-content');
+        mainContent?.removeAttribute('aria-hidden');
+
+        if (!withAnimation) {
+            mainContent.style.opacity = '1';
+            return;
         }
 
-        const dot = document.getElementById('cursor-dot');
-        const outline = document.getElementById('cursor-outline');
-        window.addEventListener('mousemove', (e) => {
-            dot.style.left = `${e.clientX}px`; dot.style.top = `${e.clientY}px`;
-            gsap.to(outline, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15, ease: "power2.out" });
-        });
+        const tl = gsap.timeline();
+        tl.from(".massive-bg-text", { opacity: 0, scale: 1.2, duration: 1 })
+            .from(".tape-top", { y: "-100%", duration: 0.9, ease: "power3.out" }, "-=0.7")
+            .from(".tape-bottom", { y: "100%", duration: 0.9, ease: "power3.out" }, "-=0.9")
+            .from(".header-eyebrow", { opacity: 0, duration: 0.5 }, "-=0.5")
+            .from(".badge-wrapper", { rotate: -180, opacity: 0, scale: 0, duration: 1, ease: "back.out(1.5)" }, "-=0.4")
+            .from(".main-title", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
+            .from(".gsap-welcome", { y: 30, opacity: 0, duration: 0.6 }, "-=0.4")
+            .from(".gsap-fade", { opacity: 0, duration: 0.5, stagger: 0.15 }, "-=0.2")
+            .from(".gsap-card", {
+                y: 60, opacity: 0, duration: 0.6, stagger: 0.1, ease: "back.out(1.2)",
+                onComplete: () => setTimeout(fireConfetti, 300)
+            }, "-=0.2");
+    }
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function initSeal() {
+        const sealButton = document.getElementById('seal-button');
+        const sealOverlay = document.getElementById('seal-overlay');
 
-        function revealSite() {
-            const tl = gsap.timeline();
-            tl.from(".massive-bg-text", { opacity: 0, scale: 1.2, duration: 1 })
-                .from(".tape-top", { y: "-100%", duration: 0.9, ease: "power3.out" }, "-=0.7")
-                .from(".tape-bottom", { y: "100%", duration: 0.9, ease: "power3.out" }, "-=0.9")
-                .from(".header-eyebrow", { opacity: 0, duration: 0.5 }, "-=0.5")
-                .from(".badge-wrapper", { rotate: -180, opacity: 0, scale: 0, duration: 1, ease: "back.out(1.5)" }, "-=0.4")
-                .from(".main-title", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6")
-                .from(".gsap-welcome", { y: 30, opacity: 0, duration: 0.6 }, "-=0.4")
-                .from(".gsap-fade", { opacity: 0, duration: 0.5, stagger: 0.15 }, "-=0.2")
-                .from(".gsap-card", {
-                    y: 60,
-                    opacity: 0,
-                    duration: 0.6,
-                    stagger: 0.1,
-                    ease: "back.out(1.2)",
-                    onComplete: () => setTimeout(fireConfetti, 300)
-                }, "-=0.2");
+        const alreadyOpened = sessionStorage.getItem(SEAL_KEY);
+
+        if (alreadyOpened) {
+            sealOverlay.style.display = 'none';
+            revealSite(false);
+            return;
         }
 
-        function initSeal() {
-            const sealButton = document.getElementById('seal-button');
-            const sealOverlay = document.getElementById('seal-overlay');
-            if (!sealButton || !sealOverlay) { revealSite(); return; }
+        document.getElementById('main-content')?.setAttribute('aria-hidden', 'true');
 
-            document.getElementById('main-content')?.setAttribute('aria-hidden', 'true');
+        function breakSeal() {
+            if (sealButton.classList.contains('breaking')) return;
+            sealButton.classList.add('breaking');
+            sealButton.disabled = true;
 
-            function breakSeal() {
-                if (sealButton.classList.contains('breaking')) return;
-                sealButton.classList.add('breaking');
-                sealButton.disabled = true;
-
-                const waitTime = prefersReducedMotion ? 50 : 750;
-                setTimeout(() => {
-                    gsap.to(sealOverlay, {
-                        y: "-100vh",
-                        duration: prefersReducedMotion ? 0.3 : 0.8,
-                        ease: "power3.inOut",
-                        onComplete: () => {
-                            sealOverlay.style.display = 'none';
-                            document.getElementById('main-content')?.removeAttribute('aria-hidden');
-                            revealSite();
-                        }
-                    });
-                }, waitTime);
-            }
-
-            sealButton.addEventListener('click', breakSeal);
+            const waitTime = prefersReducedMotion ? 50 : 900;
+            setTimeout(() => {
+                gsap.to(sealOverlay, {
+                    y: "-100vh",
+                    duration: prefersReducedMotion ? 0.3 : 0.9,
+                    ease: "power3.inOut",
+                    onComplete: () => {
+                        sealOverlay.style.display = 'none';
+                        sessionStorage.setItem(SEAL_KEY, 'true');
+                        revealSite(true);
+                    }
+                });
+            }, waitTime);
         }
 
-        document.addEventListener("DOMContentLoaded", initSeal);
-    </script>
+        sealButton.addEventListener('click', breakSeal);
+    }
+
+    document.addEventListener("DOMContentLoaded", initSeal);
+</script>
 </Layout>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
     :global(:root) {
+        --red: #D10000;
+        --red-deep: #8a0000;
+        --red-dim: rgba(209, 0, 0, 0.18);
         --gold: #C9A227;
         --gold-bright: #E8C468;
-        --wine: #4a0404;
-        --wine-deep: #2a0000;
-        --ash: #7a7a7a;
+        --gold-pale: #f0d88a;
+        --ash: #6a6a6a;
+        --ash-light: #9a9a9a;
+        --ink: #0a0a0a;
+        --paper: #111010;
+        --env-border: #5a3f10;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,500;1,500;1,600&display=swap');
-
-    html, body { cursor: none; overflow-x: hidden; }
+    html, body { cursor: none; overflow-x: hidden; background: var(--ink); }
 
     #cursor-dot {
-        width: 6px; height: 6px; background-color: var(--text-white); border-radius: 50%;
+        width: 5px; height: 5px; background: #fff; border-radius: 50%;
         position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
     }
     #cursor-outline {
-        width: 40px; height: 40px; border: 2px solid var(--breach-red); border-radius: 50%;
+        width: 38px; height: 38px; border: 1.5px solid var(--red); border-radius: 50%;
         position: fixed; pointer-events: none; z-index: 9998;
     }
 
     .grain-overlay {
-        position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+        position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
         background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     }
 
     #seal-overlay {
-        position: fixed; inset: 0; z-index: 9000;
-        background: radial-gradient(circle at center, var(--wine) 0%, var(--bg-black) 75%);
-        display: flex; align-items: center; justify-content: center;
-    }
-    .seal-frame { display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
-    .seal-eyebrow {
-        font-family: 'Cinzel Decorative', serif; font-size: 0.75rem; letter-spacing: 4px;
-        color: var(--gold); opacity: 0.8; text-align: center;
-    }
+    position: fixed; inset: 0; z-index: 9000;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+}
 
-    .wax-seal {
-        position: relative; width: 210px; height: 210px;
-        border-radius: 51% 49% 52% 48% / 48% 51% 49% 52%;
-        background: radial-gradient(circle at 40% 35%, #7a1010 0%, #4a0404 55%, #1f0000 100%);
-        border: none;
-        box-shadow: inset 0 5px 8px rgba(255, 255, 255, 0.08), inset 0 -8px 12px rgba(0, 0, 0, 0.5), inset 0 0 0 8px #4a0404, inset 0 0 15px 12px rgba(0, 0, 0, 0.6), 0 15px 25px rgba(0, 0, 0, 0.4);
-        display: flex; align-items: center; justify-content: center;
-        cursor: none; padding: 0; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .wax-seal:hover:not(.breaking) { transform: scale(1.02) translateY(-4px); box-shadow: inset 0 5px 8px rgba(255, 255, 255, 0.08), inset 0 -8px 12px rgba(0, 0, 0, 0.5), inset 0 0 0 8px #4a0404, inset 0 0 15px 12px rgba(0, 0, 0, 0.6), 0 20px 35px rgba(0, 0, 0, 0.5); }
-    .wax-seal:focus-visible { outline: 2px solid var(--gold); outline-offset: 6px; }
+.seal-scene {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+}
 
-    .seal-ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: rotate 14s linear infinite; }
-    .seal-ring text { fill: #9e833b; font-family: 'Space Mono', monospace; font-size: 9.5px; opacity: 0.8; }
+.seal-frame {
+    display: flex; flex-direction: column; align-items: center; gap: 2.8rem;
+}
 
-    .seal-core { position: relative; z-index: 2; text-align: center; pointer-events: none; }
-    .seal-number {
-        display: block; font-family: 'Cinzel Decorative', serif; font-size: 3.2rem;
-        color: #d1b464; text-shadow: -1px -1px 2px rgba(0,0,0,0.8), 1px 1px 1px rgba(255,255,255,0.15);
-    }
-    .seal-sub {
-        display: block; font-family: 'Oswald', sans-serif; letter-spacing: 6px; font-size: 0.8rem;
-        color: #b59b52; text-shadow: -1px -1px 2px rgba(0,0,0,0.8); opacity: 0.9;
-    }
+.seal-eyebrow {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 0.9rem; letter-spacing: 4px;
+    color: var(--ash); text-align: center;
+}
 
-    .seal-hint { font-family: 'Space Mono', monospace; color: var(--ash); font-size: 0.8rem; letter-spacing: 2px; animation: pulseHint 2s ease-in-out infinite; }
+.wax-seal {
+    position: relative; width: 210px; height: 210px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid var(--red);
+    box-shadow: 0 0 0 8px rgba(209,0,0,0.04), 0 0 40px rgba(209,0,0,0.08);
+    display: flex; align-items: center; justify-content: center;
+    cursor: none; padding: 0;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.wax-seal:hover:not(.breaking) {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 8px rgba(201,162,39,0.05), 0 0 55px rgba(201,162,39,0.1);
+}
+.wax-seal:focus-visible { outline: 1px solid var(--gold); outline-offset: 12px; }
 
-    .wax-seal.breaking .seal-core { animation: crackShake 0.35s ease; }
-    .wax-seal.breaking::before,
-    .wax-seal.breaking::after {
-        content: ''; position: absolute; inset: 0;
-        border-radius: 51% 49% 52% 48% / 48% 51% 49% 52%;
-        background: inherit; box-shadow: inherit;
-    }
-    .wax-seal.breaking::before {
-        clip-path: polygon(0 0, 48% 0, 58% 42%, 32% 100%, 0 100%);
-        animation: splitLeft 0.65s ease forwards 0.12s;
-    }
-    .wax-seal.breaking::after {
-        clip-path: polygon(48% 0, 100% 0, 100% 100%, 32% 100%, 58% 42%);
-        animation: splitRight 0.65s ease forwards 0.12s;
-    }
+.seal-ring {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    animation: rotate 22s linear infinite;
+}
+.seal-ring text {
+    fill: var(--ash);
+    font-family: 'Space Mono', monospace; font-size: 8.5px; letter-spacing: 0.5px;
+}
 
-    @keyframes crackShake {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(-3px, 2px); }
-        50% { transform: translate(3px, -2px); }
-        75% { transform: translate(-2px, -1px); }
-    }
-    @keyframes splitLeft { to { transform: translate(-70px, 50px) rotate(-18deg); opacity: 0; } }
-    @keyframes splitRight { to { transform: translate(70px, 50px) rotate(18deg); opacity: 0; } }
-    @keyframes pulseHint { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+.seal-core {
+    position: relative; z-index: 2; text-align: center;
+    pointer-events: none; display: flex; flex-direction: column;
+    align-items: center; line-height: 1;
+}
+.seal-symbol {
+    display: block; font-size: 0.85rem; color: var(--ash);
+    margin-bottom: 0.3rem; letter-spacing: 0;
+}
+.seal-number {
+    display: block; font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 4.5rem; color: #fff; line-height: 0.9;
+}
+.seal-divider {
+    display: block; font-size: 0.45rem; color: var(--ash);
+    letter-spacing: 3px; margin: 0.25rem 0;
+}
+.seal-sub-text {
+    display: block; font-family: 'Space Mono', monospace;
+    font-size: 0.48rem; color: var(--ash);
+    letter-spacing: 7px; text-transform: uppercase;
+}
+
+.wax-seal.breaking .seal-core { animation: crackShake 0.5s ease; }
+.wax-seal.breaking::before,
+.wax-seal.breaking::after {
+    content: ''; position: absolute; inset: 0;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 1.5px solid var(--red);
+}
+.wax-seal.breaking::before {
+    clip-path: polygon(0 0, 50% 0, 44% 58%, 22% 100%, 0 100%);
+    animation: splitLeft 0.8s cubic-bezier(0.6, 0, 0.8, 1) forwards 0.2s;
+}
+.wax-seal.breaking::after {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 22% 100%, 44% 58%);
+    animation: splitRight 0.8s cubic-bezier(0.6, 0, 0.8, 1) forwards 0.2s;
+}
+@keyframes crackShake {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    20% { transform: translate(-4px, 3px) rotate(-1deg); }
+    40% { transform: translate(4px, -3px) rotate(1deg); }
+    60% { transform: translate(-3px, -2px) rotate(-0.5deg); }
+    80% { transform: translate(2px, 2px) rotate(0.5deg); }
+}
+@keyframes splitLeft { to { transform: translate(-80px, 60px) rotate(-22deg); opacity: 0; } }
+@keyframes splitRight { to { transform: translate(80px, 60px) rotate(22deg); opacity: 0; } }
+
+.seal-hint-wrap {
+    display: flex; align-items: center; gap: 1.9rem;
+}
+.hint-line {
+    display: block; width: 40px; height: 1px; background: rgba(106,106,106,0.3);
+}
+.hint-line-r { background: rgba(106,106,106,0.3); }
+.seal-hint {
+    font-family: 'DM Serif Display', serif; font-style: serif;
+    color: var(--ash); font-size: 2.95rem; letter-spacing: 2px;
+    animation: pulseHint 0.5s ease-in-out infinite;
+}
+@keyframes pulseHint { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.75; } }
+
+.seal-overlay-deco { position: absolute; inset: 0; pointer-events: none; }
+.float-rune {
+    position: absolute; color: var(--red); opacity: 0.07; font-size: 1.2rem;
+    animation: runeFloat 7s ease-in-out infinite;
+}
+.r1 { top: 8%; left: 6%; animation-delay: 0s; font-size: 1.8rem; }
+.r2 { top: 18%; right: 8%; animation-delay: 1.2s; font-size: 0.9rem; }
+.r3 { bottom: 22%; left: 10%; animation-delay: 2.4s; font-size: 0.8rem; }
+.r4 { bottom: 12%; right: 6%; animation-delay: 3.6s; font-size: 2rem; }
+.r5 { top: 52%; left: 3%; animation-delay: 1.8s; }
+.r6 { top: 38%; right: 4%; animation-delay: 3s; font-size: 0.8rem; }
+@keyframes runeFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.06; }
+    50% { transform: translateY(-18px) rotate(12deg); opacity: 0.13; }
+}
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
 
     .bg-wallpaper {
-        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-        background-image:
-            linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
-            url('/fondo.jpg');
-        background-size: cover; background-position: center;
-        z-index: -4; pointer-events: none;
-    }
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
 
+    background-image:
+        radial-gradient(
+            circle at top,
+            rgba(209,0,0,.18) 0%,
+            transparent 25%
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(8,8,8,.45) 0%,
+            rgba(8,8,8,.65) 60%,
+            rgba(8,8,8,.80) 100%
+        ),
+
+        url('../public/fondo.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
     .bg-grid {
         position: fixed; top: 0; left: 0; width: 200vw; height: 200vh;
         background-image:
-            linear-gradient(rgba(229, 0, 0, 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(229, 0, 0, 0.08) 1px, transparent 1px);
-        background-size: 50px 50px; z-index: -3;
+            linear-gradient(rgba(180, 0, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(180, 0, 0, 0.05) 1px, transparent 1px);
+        background-size: 60px 60px; z-index: -3;
         transform: rotate(-15deg) translateY(-50px);
-        animation: scrollGrid 24s linear infinite;
+        animation: scrollGrid 30s linear infinite;
     }
-    @keyframes scrollGrid { 100% { transform: rotate(-15deg) translateY(0px) translateX(-50px); } }
-
+    @keyframes scrollGrid { 100% { transform: rotate(-15deg) translateY(0px) translateX(-60px); } }
     .bg-vignette {
         position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-        background: radial-gradient(circle, transparent 50%, rgba(5, 5, 5, 1) 95%);
-        box-shadow: inset 0 0 100px rgba(229, 0, 0, 0.15); z-index: -2; pointer-events: none;
+        background: radial-gradient(circle, transparent 40%, rgba(4, 4, 4, 1) 92%);
+        z-index: -2; pointer-events: none;
     }
-
     .massive-bg-text {
         position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        font-family: 'Oswald', sans-serif; font-size: clamp(10rem, 25vw, 30rem);
-        color: transparent; -webkit-text-stroke: 2px rgba(255, 255, 255, 0.03);
+        font-family: 'UnifrakturMaguntia', cursive;
+        font-size: clamp(8rem, 22vw, 26rem);
+        color: transparent; -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.025);
         z-index: -1; pointer-events: none; white-space: nowrap; user-select: none;
     }
 
     .tape {
         position: fixed; left: 0; width: 100%; z-index: 40;
-        color: #1a0000; font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 1rem;
-        letter-spacing: 1px; padding: 0.6rem 0; overflow: hidden; white-space: nowrap;
-        background: var(--breach-red);
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+        color: rgba(0,0,0,0.85); font-family: 'Space Mono', monospace;
+        font-size: 0.78rem; letter-spacing: 2px;
+        padding: 0.55rem 0; overflow: hidden; white-space: nowrap;
+        background: var(--red);
+        border: none;
     }
-    .tape-top { top: 0; border-bottom: 1px solid rgba(201, 162, 39, 0.6); }
-    .tape-bottom { bottom: 0; border-top: 1px solid rgba(201, 162, 39, 0.6); }
-    .tape span { display: inline-block; padding-left: 100%; animation: marqueeTape 28s linear infinite; }
+    .tape-top { top: 0; box-shadow: 0 2px 20px rgba(180,0,0,0.4); }
+    .tape-bottom { bottom: 0; box-shadow: 0 -2px 20px rgba(180,0,0,0.4); }
+    .tape span { display: inline-block; padding-left: 100%; animation: marqueeTape 32s linear infinite; }
     .tape-bottom span { animation-direction: reverse; }
     @keyframes marqueeTape { 100% { transform: translateX(-100%); } }
 
-    .container { max-width: 1300px; margin: 0 auto; padding: 6.5rem 2rem 6rem 2rem; position: relative; z-index: 10; overflow: hidden; }
+    .container {
+        max-width: 1280px; margin: 0 auto;
+        padding: 7rem 2.5rem 6rem 2.5rem;
+        position: relative; z-index: 10; overflow: hidden;
+    }
 
-    .header { display: flex; flex-direction: column; align-items: center; margin-bottom: 6rem; position: relative; }
+    .header {
+        display: flex; flex-direction: column; align-items: center;
+        margin-bottom: 7rem; position: relative;
+    }
 
     .header-eyebrow {
-        font-family: 'Cinzel Decorative', serif; font-size: 0.85rem; letter-spacing: 5px;
-        color: var(--gold); margin-bottom: 3rem; text-align: center;
+        font-family: 'Space Mono', monospace; font-size: 0.72rem;
+        letter-spacing: 5px; color: var(--ash); margin-bottom: 3.5rem;
+        text-align: center; text-transform: lowercase;
     }
 
-    .badge-wrapper { position: relative; width: 220px; height: 220px; margin-bottom: 3rem; }
+    .badge-wrapper {
+        position: relative; width: 200px; height: 200px; margin-bottom: 3.5rem;
+    }
     .badge-wrapper::before {
-        content: ''; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
-        width: 280px; height: 320px; border: 2px solid var(--gold);
-        border-radius: 140px 140px 8px 8px; opacity: 0.25; z-index: -1;
-        box-shadow: 0 0 35px rgba(201, 162, 39, 0.15);
+        content: ''; position: absolute; top: -28px; left: 50%;
+        transform: translateX(-50%);
+        width: 260px; height: 300px;
+        border: 1px solid rgba(201, 162, 39, 0.18);
+        border-radius: 130px 130px 6px 6px; z-index: -1;
     }
-    .rotating-badge { width: 100%; height: 100%; animation: rotate 60s linear infinite; }
-    .rotating-badge text { fill: var(--breach-red); font-family: 'Space Mono'; font-weight: bold; font-size: 15px; }
+    .rotating-badge {
+        width: 100%; height: 100%; animation: rotate 70s linear infinite;
+    }
+    .rotating-badge text {
+        fill: var(--red); font-family: 'Space Mono', monospace;
+        font-size: 8.5px; letter-spacing: 1px;
+    }
     .badge-center {
-        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        font-family: 'Oswald', sans-serif; font-size: 4rem; color: var(--text-white); font-weight: bold;
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'UnifrakturMaguntia', cursive;
+        font-size: 5rem; color: #fff; line-height: 1;
+        text-shadow: 0 0 30px rgba(209,0,0,0.3);
     }
-    @keyframes rotate { 100% { transform: rotate(360deg); } }
 
     .candle-flame {
-        position: absolute; top: 12%; width: 18px; height: 26px; fill: var(--gold-bright);
-        filter: drop-shadow(0 0 6px var(--gold)); animation: flicker 1.8s ease-in-out infinite;
+        position: absolute; top: 10%; width: 16px; height: 24px;
+        fill: var(--gold-bright);
+        filter: drop-shadow(0 0 5px var(--gold));
+        animation: flicker 1.8s ease-in-out infinite;
     }
-    .flame-left { left: -35px; }
-    .flame-right { right: -35px; animation-delay: 0.4s; transform: scaleX(-1); }
+    .flame-left { left: -32px; }
+    .flame-right { right: -32px; animation-delay: 0.4s; transform: scaleX(-1); }
     @keyframes flicker {
         0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
         25% { transform: scaleY(1.1) scaleX(0.95); opacity: 0.85; }
@@ -349,100 +524,238 @@ const allMessages = await getCollection('messages');
     }
 
     .main-title {
-        font-family: 'Oswald', sans-serif; font-size: clamp(3rem, 10vw, 7rem);
-        line-height: 1.1; text-align: center; margin-bottom: 3.5rem; display: flex; flex-direction: column;
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(3.2rem, 11vw, 8rem);
+        line-height: 1.05; text-align: center; margin-bottom: 3.5rem;
+        display: flex; flex-direction: column; gap: 0.1rem;
     }
-    .title-solid { color: var(--text-white); text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8); }
-    .title-outline { color: transparent; -webkit-text-stroke: 2px var(--breach-red); position: relative; display: inline-block; }
+    .title-solid {
+        color: #fff;
+        text-shadow: 0 0 40px rgba(209,0,0,0.2), 3px 3px 0 rgba(0,0,0,0.8);
+    }
+    .title-outline {
+        color: transparent; -webkit-text-stroke: 1.5px var(--red);
+        position: relative; display: inline-block;
+    }
     .crossed-out {
-        text-decoration: line-through; text-decoration-color: var(--gold);
-        text-decoration-thickness: 5px; text-underline-offset: 0;
+        text-decoration: line-through;
+        text-decoration-color: var(--gold);
+        text-decoration-thickness: 4px;
     }
 
     .welcome-box {
-        background: rgba(229, 0, 0, 0.05); border: 1px solid var(--breach-red); border-left: 6px solid var(--breach-red);
-        padding: 1.5rem 2rem; max-width: 700px; text-align: center; backdrop-filter: blur(5px);
-        box-shadow: 0 10px 30px rgba(229, 0, 0, 0.12); width: 90%;
+        background: rgba(209, 0, 0, 0.04);
+        border: 1px solid rgba(209, 0, 0, 0.25);
+        border-left: 3px solid var(--red);
+        padding: 1.6rem 2.2rem; max-width: 680px;
+        text-align: center; backdrop-filter: blur(4px);
+        width: 90%;
     }
-    .welcome-text { font-size: clamp(1rem, 3vw, 1.3rem); color: var(--text-white); margin: 0; line-height: 1.5; }
+    .welcome-text {
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+        color: rgba(255,255,255,0.8); margin: 0; line-height: 1.6;
+        letter-spacing: 0.3px;
+    }
 
-    .grid-title { margin-bottom: 3rem; border-bottom: 1px dashed var(--breach-red); padding-bottom: 1rem; }
-    .grid-title h2 { color: var(--breach-red); font-size: 1.2rem; }
-    .grid-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ash); font-size: 1.2rem; margin-top: 0.5rem; }
+    .grid-title {
+        margin-bottom: 3.5rem;
+        border-bottom: 1px solid rgba(209, 0, 0, 0.2);
+        padding-bottom: 1.2rem;
+    }
+    .grid-title-inner h2 {
+        font-family: 'DM Serif Display', serif;
+        font-size: 2rem; color: #fff;
+        font-weight: normal; letter-spacing: 1px;
+    }
+    .counter { color: var(--red); font-family: 'Space Mono', monospace; font-size: 1rem; }
+    .grid-subtitle {
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        color: var(--ash); font-size: 1.1rem; margin-top: 0.4rem;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 3rem 2.5rem; }
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 3.5rem 2.5rem;
+    }
 
-    .gift-card {
-        background: radial-gradient(circle at top right, rgba(201, 162, 39, 0.12), transparent 70%), rgba(15, 15, 15, 0.95);
-        border: 2px solid var(--gold); border-radius: 18px; padding: 3rem 1.75rem 2.5rem 1.75rem;
-        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem;
-        position: relative; overflow: hidden; cursor: none; min-height: 300px;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(201, 162, 39, 0.04);
-        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    .envelope-card {
+        position: relative; display: block; min-height: 220px;
+        cursor: none; text-decoration: none;
         transform: rotate(var(--tilt, 0deg));
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        filter: drop-shadow(0 14px 28px rgba(0,0,0,0.7));
     }
-    .gift-card:nth-child(4n+1) { --tilt: -0.7deg; }
-    .gift-card:nth-child(4n+2) { --tilt: 0.5deg; }
-    .gift-card:nth-child(4n+3) { --tilt: -0.4deg; }
-    .gift-card:nth-child(4n+4) { --tilt: 0.8deg; }
-
-    .washi-tape {
-        position: absolute; top: -12px; left: 50%; width: 84px; height: 26px;
-        background: repeating-linear-gradient(135deg, rgba(201, 162, 39, 0.85) 0 6px, rgba(201, 162, 39, 0.6) 6px 12px);
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35); opacity: 0.9; pointer-events: none;
-    }
-    .gift-card:nth-child(odd) .washi-tape { transform: translateX(-50%) rotate(-4deg); }
-    .gift-card:nth-child(even) .washi-tape { transform: translateX(-50%) rotate(3deg); }
-
-    .card-number {
-        position: absolute; top: 20px; left: 22px; font-family: 'Oswald', sans-serif;
-        font-size: 2.2rem; color: rgba(255, 255, 255, 0.04); font-weight: bold; pointer-events: none;
-    }
-    .card-glitch-bg {
-        position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.12), transparent);
-        transition: left 0.6s ease; pointer-events: none;
-    }
-    .gift-card:hover .card-glitch-bg { left: 100%; transition: left 0.6s ease; }
-    .gift-card:hover {
-        border-color: var(--gold-bright);
-        transform: rotate(0deg) translateY(-8px) scale(1.02);
-        box-shadow: 0 18px 36px rgba(201, 162, 39, 0.16), inset 0 0 25px rgba(201, 162, 39, 0.08);
+    .envelope-card:nth-child(4n+1) { --tilt: -1deg; }
+    .envelope-card:nth-child(4n+2) { --tilt: 0.6deg; }
+    .envelope-card:nth-child(4n+3) { --tilt: -0.5deg; }
+    .envelope-card:nth-child(4n+4) { --tilt: 1deg; }
+    .envelope-card:hover {
+        transform: rotate(0deg) translateY(-10px);
+        filter: drop-shadow(0 22px 40px rgba(0,0,0,0.8)) drop-shadow(0 0 20px rgba(201,162,39,0.12));
     }
 
-    .gift-icon { width: 40px; color: var(--gold); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s; }
-    .gift-card:hover .gift-icon { color: var(--gold-bright); transform: translateY(-6px) rotate(-4deg); filter: drop-shadow(0 0 10px rgba(201, 162, 39, 0.45)); }
-
-    .gift-sender { text-align: center; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; }
-    .highlight {
-        font-size: clamp(2.6rem, 9vw, 4.5rem); color: var(--text-white); font-weight: bold;
-        font-family: 'Oswald', sans-serif; display: block; line-height: 1.05; letter-spacing: 0.5px;
-        word-break: break-word;
+    .env-bg-glow {
+        position: absolute; inset: -20px; z-index: 0; pointer-events: none;
+        background: radial-gradient(ellipse at 50% 50%, rgba(201,162,39,0.05), transparent 70%);
+        opacity: 0; transition: opacity 0.4s ease; border-radius: 50%;
     }
+    .envelope-card:hover .env-bg-glow { opacity: 1; }
 
-    .click-hint {
-        font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem;
-        color: var(--gold-bright); opacity: 0; transition: opacity 0.3s;
+    .env-back {
+        position: absolute; inset: 0;
+        background: linear-gradient(160deg, #120d04 0%, #1c1408 50%, #100c04 100%);
+        border: 1px solid var(--env-border); border-radius: 4px; z-index: 1;
     }
-    .gift-card:hover .click-hint { opacity: 0.85; }
+    .env-flap-back {
+        position: absolute; top: 0; left: 0; right: 0; height: 55%;
+        background: linear-gradient(175deg, #1e1608 0%, #150f05 100%);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        border-left: 1px solid var(--env-border);
+        border-right: 1px solid var(--env-border);
+        z-index: 2; transform-origin: top center;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+    }
+    .envelope-card:hover .env-flap-back {
+        transform: perspective(600px) rotateX(-165deg);
+        background: linear-gradient(175deg, #2a1e0a 0%, #1e1508 100%);
+    }
+    .env-flap-front {
+        position: absolute; top: 0; left: 0; right: 0; height: 55%;
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+        z-index: 5; transform-origin: top center;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.02s;
+        background: linear-gradient(175deg, #1a1206 0%, #120d04 100%);
+        border-left: 1px solid var(--env-border);
+        border-right: 1px solid var(--env-border);
+        overflow: hidden;
+    }
+    .envelope-card:hover .env-flap-front {
+        transform: perspective(600px) rotateX(-165deg);
+    }
+    .flap-inner-fold {
+        position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+        width: 0; height: 0;
+        border-left: 40px solid transparent;
+        border-right: 40px solid transparent;
+        border-bottom: 24px solid rgba(201, 162, 39, 0.07);
+    }
+    .env-body {
+        position: absolute; inset: 0; z-index: 3;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: flex-end;
+        padding: 1.5rem 1.75rem 1.75rem;
+        border-radius: 4px; overflow: hidden;
+    }
+    .env-corner {
+        position: absolute; width: 18px; height: 18px; z-index: 4;
+        border-color: rgba(201, 162, 39, 0.2); border-style: solid;
+    }
+    .env-corner.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+    .env-corner.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+    .env-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+    .env-corner.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+    .env-postmark {
+        position: absolute; top: 14px; right: 16px;
+        width: 52px; height: 52px;
+        color: rgba(201, 162, 39, 0.28); z-index: 4;
+        font-family: 'Space Mono', monospace;
+    }
+    .env-postmark svg text { fill: currentColor; font-family: 'Space Mono', monospace; }
+    .env-number {
+        position: absolute; top: 16px; left: 18px;
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        font-size: 0.95rem; color: rgba(201, 162, 39, 0.22); z-index: 4; letter-spacing: 1px;
+    }
+    .env-wax-seal {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 50px; height: 50px; border-radius: 50%;
+        background: radial-gradient(circle at 40% 35%, #8a1010 0%, #4a0404 60%, #1f0000 100%);
+        box-shadow:
+            inset 0 3px 6px rgba(255,100,100,0.07),
+            inset 0 -4px 8px rgba(0,0,0,0.5),
+            0 4px 12px rgba(0,0,0,0.5),
+            0 0 0 1px rgba(80,10,10,0.7);
+        display: flex; align-items: center; justify-content: center; z-index: 6;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
+    }
+    .envelope-card:hover .env-wax-seal {
+        transform: translate(-50%, -50%) scale(1.15) translateY(-3px);
+        box-shadow:
+            inset 0 3px 6px rgba(255,100,100,0.1),
+            inset 0 -4px 8px rgba(0,0,0,0.5),
+            0 8px 20px rgba(0,0,0,0.6),
+            0 0 0 1px rgba(80,10,10,0.8),
+            0 0 18px rgba(180,0,0,0.18);
+    }
+    .mini-seal-inner {
+        font-size: 1.3rem; color: #c9922a;
+        text-shadow: 0 0 8px rgba(200,140,30,0.4);
+        display: flex; align-items: center; justify-content: center; line-height: 1;
+    }
+    .env-sender-label {
+        display: flex; flex-direction: column; align-items: center; gap: 0.12rem;
+        z-index: 4; margin-top: 2rem;
+    }
+    .env-from-label {
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        font-size: 0.82rem; color: rgba(201, 162, 39, 0.45); letter-spacing: 2px;
+    }
+    .env-sender-name {
+        font-family: 'UnifrakturMaguntia', cursive;
+        font-size: clamp(1.3rem, 4vw, 2rem);
+        color: var(--gold-pale); text-align: center;
+        word-break: break-word; line-height: 1.15;
+        text-shadow: 0 0 20px rgba(201,162,39,0.15);
+        transition: color 0.3s, text-shadow 0.3s;
+        font-weight: normal;
+    }
+    .envelope-card:hover .env-sender-name {
+        color: #fff8e6;
+        text-shadow: 0 0 25px rgba(240,216,138,0.3);
+    }
+    .env-open-hint {
+        display: flex; align-items: center; gap: 0.6rem;
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        font-size: 0.82rem; color: var(--gold);
+        opacity: 0; transform: translateY(6px);
+        transition: opacity 0.35s ease, transform 0.35s ease;
+        z-index: 4; margin-top: 0.5rem;
+    }
+    .env-open-hint svg { width: 18px; height: 8px; }
+    .envelope-card:hover .env-open-hint { opacity: 0.75; transform: translateY(0); }
+    .env-shine {
+        position: absolute; top: 0; left: -80%; width: 40%; height: 100%;
+        background: linear-gradient(105deg, transparent 40%, rgba(255,220,100,0.035) 50%, transparent 60%);
+        z-index: 7; pointer-events: none; transition: left 0.7s ease;
+    }
+    .envelope-card:hover .env-shine { left: 140%; }
 
-    .site-footer { margin-top: 6rem; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--ash); font-size: 1.2rem; }
+    .site-footer {
+        margin-top: 7rem; text-align: center;
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        color: var(--ash); font-size: 1.1rem;
+        border-top: 1px solid rgba(255,255,255,0.04);
+        padding-top: 2rem;
+    }
 
     @media (prefers-reduced-motion: reduce) {
-        .seal-ring, .tape span, .bg-grid, .rotating-badge, .candle-flame, .card-glitch-bg { animation: none !important; }
+        .seal-ring, .tape span, .bg-grid, .rotating-badge, .candle-flame,
+        .env-shine, .float-rune, .seal-symbol { animation: none !important; }
     }
 
     @media (max-width: 768px) {
-        .container { padding: 5.5rem 1rem 4rem 1rem; }
-        .tape { font-size: 0.8rem; }
-        .badge-wrapper { width: 140px; height: 140px; }
-        .badge-center { font-size: 2.8rem; }
+        .container { padding: 5.5rem 1.2rem 4rem 1.2rem; }
+        .tape { font-size: 0.7rem; }
+        .badge-wrapper { width: 150px; height: 150px; }
+        .badge-center { font-size: 3.5rem; }
         .candle-flame { display: none; }
-        .badge-wrapper::before { width: 180px; height: 220px; top: -20px; }
-        .grid { grid-template-columns: 1fr; gap: 2rem; }
-        .gift-card { transform: none !important; min-height: 260px; padding: 2.5rem 1.5rem 2rem 1.5rem; }
-        .wax-seal { width: 170px; height: 170px; }
-        .seal-number { font-size: 2.3rem; }
-        .highlight { font-size: 2.6rem; }
+        .badge-wrapper::before { display: none; }
+        .grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .envelope-card { transform: none !important; min-height: 200px; }
+        .wax-seal { width: 175px; height: 175px; }
+        .seal-number { font-size: 3rem; }
+        .env-sender-name { font-size: 1.4rem; }
     }
 </style>

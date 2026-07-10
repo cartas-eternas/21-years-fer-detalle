@@ -12,6 +12,35 @@ export async function getStaticPaths() {
 
 const { message } = Astro.props;
 const { Content } = await render(message);
+
+function getVideoEmbedUrl(url) {
+    if (!url) return null;
+    try {
+        const urlObj = new URL(url);
+        
+        if (urlObj.hostname.includes('youtube.com') || urlObj.hostname === 'youtu.be') {
+            let videoId = urlObj.searchParams.get('v') || urlObj.pathname.replace('/', '');
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+        
+        if (urlObj.hostname.includes('vimeo.com')) {
+            let videoId = urlObj.pathname.split('/')[1];
+            return `https://player.vimeo.com/video/${videoId}`;
+        }
+
+        if (urlObj.hostname.includes('drive.google.com')) {
+            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match && match[1]) {
+                return `https://drive.google.com/file/d/${match[1]}/preview`;
+            }
+        }
+    } catch (e) {
+        return null;
+    }
+    return url;
+}
+
+const embedUrl = message.data.type === 'video' ? getVideoEmbedUrl(message.data.videoUrl) : null;
 ---
 
 <Layout title={`Para Fer - De: ${message.data.sender}`}>
@@ -24,7 +53,8 @@ const { Content } = await render(message);
     <div class="bg-wallpaper"></div>
     <div class="bg-vignette"></div>
 
-    <main class="container">    
+    <main class="container">
+        
         <article class="letter-card fade-in">
             <div class="card-corners"></div>
             
@@ -34,30 +64,32 @@ const { Content } = await render(message);
             </div>
             
             <div class="card-body">
-                {message.data.type === 'video' && message.data.videoUrl ? (
+                {message.data.type === 'video' && message.data.videoUrl && (
                     <div class="video-wrapper">
                         {message.data.videoUrl.endsWith('.mp4') ? (
                             <video controls class="local-video">
                                 <source src={message.data.videoUrl} type="video/mp4" />
-                                Tu navegador no soporta la reproducción de video.
                             </video>
                         ) : (
                             <iframe 
-                                src={message.data.videoUrl} 
+                                src={embedUrl} 
                                 frameborder="0" 
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                                 allowfullscreen>
                             </iframe>
                         )}
                     </div>
-                    <div class="prose-content">
-                        <Content />
-                    </div>
-                ) : (
-                    <div class="prose-content">
-                        <Content />
+                )}
+
+                {message.data.type === 'image' && message.data.imageUrl && (
+                    <div class="image-wrapper">
+                        <img src={message.data.imageUrl} alt={`Imagen adjunta de ${message.data.sender}`} />
                     </div>
                 )}
+
+                <div class="prose-content">
+                    <Content />
+                </div>
             </div>
         </article>
     </main>
@@ -106,9 +138,7 @@ const { Content } = await render(message);
 
     .bg-wallpaper {
         position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-        background-image:
-            linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
-            url('/fondo.jpg');
+        background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)), url('/fondo.jpg');
         background-size: cover; background-position: center;
         z-index: -4; pointer-events: none;
     }
@@ -120,46 +150,23 @@ const { Content } = await render(message);
     }
 
     .container {
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 4rem 2rem 8rem 2rem;
-        position: relative;
-        z-index: 10;
+        max-width: 850px; margin: 0 auto; padding: 4rem 2rem 8rem 2rem; position: relative; z-index: 10;
     }
 
     .back-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--gold);
-        font-family: 'Oswald', sans-serif;
-        font-size: 0.9rem;
-        letter-spacing: 2px;
-        margin-bottom: 3rem;
-        transition: all 0.3s ease;
-        text-decoration: none;
+        display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gold);
+        font-family: 'Oswald', sans-serif; font-size: 0.9rem; letter-spacing: 2px;
+        margin-bottom: 3rem; transition: all 0.3s ease; text-decoration: none;
     }
-    .back-button svg {
-        width: 18px;
-        height: 18px;
-        transition: transform 0.3s ease;
-    }
-    .back-button:hover {
-        color: var(--gold-bright);
-        text-shadow: 0 0 8px rgba(201, 162, 39, 0.4);
-    }
-    .back-button:hover svg {
-        transform: translateX(-4px);
-    }
+    .back-button svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+    .back-button:hover { color: var(--gold-bright); text-shadow: 0 0 8px rgba(201, 162, 39, 0.4); }
+    .back-button:hover svg { transform: translateX(-4px); }
 
     .letter-card {
         background: radial-gradient(circle at top right, rgba(201, 162, 39, 0.08), transparent 80%), rgba(15, 15, 15, 0.95);
-        border: 1px solid var(--gold);
-        border-radius: 12px;
-        position: relative;
+        border: 1px solid var(--gold); border-radius: 12px; position: relative;
         box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(201, 162, 39, 0.03);
-        padding: 4rem;
-        overflow: hidden;
+        padding: 4rem; overflow: hidden;
     }
 
     .card-corners::before, .card-corners::after {
@@ -168,96 +175,52 @@ const { Content } = await render(message);
     .card-corners::before { top: 15px; left: 15px; border-right: none; border-bottom: none; }
     .card-corners::after { bottom: 15px; right: 15px; border-left: none; border-top: none; }
 
-    .card-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
+    .card-header { text-align: center; margin-bottom: 3rem; }
     .card-header h2 {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.2rem;
-        color: var(--ash);
-        letter-spacing: 4px;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+        font-family: 'Oswald', sans-serif; font-size: 1.2rem; color: var(--ash);
+        letter-spacing: 4px; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;
     }
     .sender-name {
-        font-family: 'Cinzel Decorative', serif;
-        font-size: 3rem;
-        color: var(--gold-bright);
-        letter-spacing: 2px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        font-family: 'Cinzel Decorative', serif; font-size: 3rem; color: var(--gold-bright);
+        letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
     }
-    .header-divider {
-        width: 60px;
-        height: 2px;
-        background: var(--gold);
-        margin: 2rem auto 0 auto;
-        opacity: 0.5;
-    }
+    .header-divider { width: 60px; height: 2px; background: var(--gold); margin: 2rem auto 0 auto; opacity: 0.5; }
 
-    .card-body {
-        position: relative;
-        z-index: 2;
-    }
+    .card-body { position: relative; z-index: 2; }
 
     .video-wrapper {
-        position: relative;
-        padding-bottom: 56.25%;
-        height: 0;
-        margin-bottom: 3rem;
-        border: 2px solid var(--gold);
-        border-radius: 8px;
-        background: #000;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        overflow: hidden;
+        position: relative; padding-bottom: 56.25%; height: 0; margin-bottom: 3rem;
+        border: 2px solid var(--gold); border-radius: 8px; background: #000;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6); overflow: hidden;
     }
     .video-wrapper iframe, .local-video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .image-wrapper {
+        margin-bottom: 3rem; border: 2px solid var(--gold); border-radius: 8px;
+        background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.6); overflow: hidden;
+        display: flex; justify-content: center; align-items: center;
+    }
+    .image-wrapper img {
+        width: 100%; height: auto; display: block; object-fit: contain;
     }
 
     .prose-content :global(p) {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 1.4rem;
-        line-height: 1.8;
-        color: #EAE0D5;
-        margin-bottom: 1.5rem;
-        text-align: justify;
+        font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; line-height: 1.8;
+        color: #EAE0D5; margin-bottom: 1.5rem; text-align: justify;
     }
-    .prose-content :global(strong) {
-        color: var(--gold-bright);
-        font-weight: 600;
-    }
-    .prose-content :global(em) {
-        color: var(--gold);
-        font-style: italic;
-    }
+    .prose-content :global(strong) { color: var(--gold-bright); font-weight: 600; }
+    .prose-content :global(em) { color: var(--gold); font-style: italic; }
     .prose-content :global(h1), .prose-content :global(h2), .prose-content :global(h3) {
-        font-family: 'Cinzel Decorative', serif;
-        color: var(--gold-bright);
-        margin-top: 2.5rem;
-        margin-bottom: 1rem;
+        font-family: 'Cinzel Decorative', serif; color: var(--gold-bright);
+        margin-top: 2.5rem; margin-bottom: 1rem;
     }
 
     @media (max-width: 768px) {
-        .container {
-            padding: 2rem 1rem 4rem 1rem;
-        }
-        .letter-card {
-            padding: 2.5rem 1.5rem;
-        }
-        .sender-name {
-            font-size: 2.2rem;
-        }
-        .prose-content :global(p) {
-            font-size: 1.2rem;
-            text-align: left;
-        }
+        .container { padding: 2rem 1rem 4rem 1rem; }
+        .letter-card { padding: 2.5rem 1.5rem; }
+        .sender-name { font-size: 2.2rem; }
+        .prose-content :global(p) { font-size: 1.2rem; text-align: left; }
     }
 </style>
