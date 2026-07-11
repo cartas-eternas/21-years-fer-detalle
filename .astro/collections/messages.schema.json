@@ -19,6 +19,10 @@
     "imageUrl": {
       "type": "string"
     },
+    "isAngel": {
+      "default": false,
+      "type": "boolean"
+    },
     "$schema": {
       "type": "string"
     }

@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allMessages = await getCollection("messages");
+const regularMessages = allMessages.filter((m) => !m.data.isAngel);
+const angelMessages = allMessages.filter((m) => m.data.isAngel);
 console.log(allMessages.length);
 ---
 
@@ -66,12 +68,6 @@ console.log(allMessages.length);
     <div class="bg-vignette"></div>
     <div class="massive-bg-text">FER_21</div>
 
-    <div class="tape tape-top">
-        <span>FELIZ CUMPLEAÑOS MAFI &nbsp;·&nbsp; FELIZ CUMPLEAÑOS FER &nbsp;·&nbsp; FELIZ CUMPLEAÑOS MIELESITA PRECIOSA &nbsp;·&nbsp; FELIZ CUMPLEAÑOS HIJA &nbsp;·&nbsp; FELIZ CUMPLEAÑOSSSSSS ESPOSA MIA &nbsp;·&nbsp; </span>
-    </div>
-    <div class="tape tape-bottom">
-        <span>FELIZ CUMPLEAÑOS MAFI &nbsp;·&nbsp; FELIZ CUMPLEAÑOS FER &nbsp;·&nbsp; FELIZ CUMPLEAÑOS MIELESITA PRECIOSA &nbsp;·&nbsp; FELIZ CUMPLEAÑOS HIJA &nbsp;·&nbsp; FELIZ CUMPLEAÑOSSSSSS ESPOSA MIA &nbsp;·&nbsp; </span>
-    </div>
 
     <main class="container" id="main-content">
         <header class="header">
@@ -97,17 +93,19 @@ console.log(allMessages.length);
                 <span class="title-solid">Years</span>
             </h1>
 
+            <p class="birthday-wish gsap-fade">¡Feliz cumpleaños 21 Fersita!</p>
+
         </header>
 
         <div class="grid-title gsap-fade">
             <div class="grid-title-inner">
                 <h2>TUS AMIGOS, FAMILIA Y YO TE HEMOS PREPARADO ALGO <3 <span class="counter"></span></h2>
-                <p class="grid-subtitle">Cada sobre guarda una dedicatoria. Ábrelos todos.</p>
+                <p class="grid-subtitle">Cada sobre guarda una dedicatoria, abrelos.</p>
             </div>
         </div>
 
         <div class="grid">
-            {allMessages.map((message, index) => (
+            {regularMessages.map((message, index) => (
                 <a href={`/${message.id}`} class="envelope-card gsap-card" data-index={index}>
                     <div class="env-bg-glow"></div>
                     <div class="env-back"></div>
@@ -148,8 +146,60 @@ console.log(allMessages.length);
             ))}
         </div>
 
+        {angelMessages.length > 0 && (
+            <div class="angels-section gsap-fade">
+                <div class="angels-title-wrap">
+                    <span class="angel-icon" aria-hidden="true">🕊</span>
+                    <h2 class="angels-title">Ángeles que te acompañarán siempre</h2>
+                    <span class="angel-icon" aria-hidden="true">🕊</span>
+                </div>
+                <p class="angels-subtitle">Aunque no estén aquí para celebrarte, su amor sigue caminando contigo.</p>
+
+                <div class="angels-grid">
+                    {angelMessages.map((message, index) => (
+                        <a href={`/${message.id}`} class="envelope-card angel-card gsap-card" data-index={index}>
+                            <div class="env-bg-glow"></div>
+                            <div class="env-back"></div>
+                            <div class="env-flap-back"></div>
+                            <div class="env-flap-front">
+                                <div class="flap-inner-fold"></div>
+                            </div>
+                            <div class="env-body">
+                                <div class="env-corner tl"></div>
+                                <div class="env-corner tr"></div>
+                                <div class="env-corner bl"></div>
+                                <div class="env-corner br"></div>
+                                <div class="env-postmark" aria-hidden="true">
+                                    <svg viewBox="0 0 60 60">
+                                        <circle cx="30" cy="30" r="27" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+                                        <text x="50%" y="34%" text-anchor="middle" dominant-baseline="middle" font-size="7" letter-spacing="1">PARA</text>
+                                        <text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" font-size="7" letter-spacing="1">TI</text>
+                                        <text x="50%" y="70%" text-anchor="middle" dominant-baseline="middle" font-size="5.5" letter-spacing="0.5">SIEMPRE</text>
+                                    </svg>
+                                </div>
+                                <div class="env-wax-seal" aria-hidden="true">
+                                    <div class="mini-seal-inner"><span>✦</span></div>
+                                </div>
+                                <div class="env-sender-label">
+                                    <span class="env-from-label">de</span>
+                                    <span class="env-sender-name">{message.data.sender}</span>
+                                </div>
+                                <div class="env-open-hint">
+                                    <span>abrir carta</span>
+                                    <svg viewBox="0 0 24 10" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M1 5h20M16 1l5 4-5 4"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="env-shine"></div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        )}
+
         <footer class="site-footer gsap-fade">
-            <p>Hecho con cariño para celebrar a Fer.</p>
+            <p>No estás sola.</p>
         </footer>
     </main>
 
@@ -157,7 +207,7 @@ console.log(allMessages.length);
     function fireConfetti() {
         const duration = 3000;
         const end = Date.now() + duration;
-        const colors = ['#E50000', '#FCE300', '#FFFFFF', '#111111'];
+        const colors = ['#D10000', '#8a0000', '#FFFFFF', '#E8C468', '#111111'];
         (function frame() {
             confetti({ particleCount: 6, angle: 60, spread: 60, origin: { x: 0, y: 0.9 }, colors });
             confetti({ particleCount: 6, angle: 120, spread: 60, origin: { x: 1, y: 0.9 }, colors });
@@ -454,14 +504,15 @@ console.log(allMessages.length);
 
     .tape {
         position: fixed; left: 0; width: 100%; z-index: 40;
-        color: rgba(0,0,0,0.85); font-family: 'Space Mono', monospace;
-        font-size: 0.78rem; letter-spacing: 2px;
-        padding: 0.55rem 0; overflow: hidden; white-space: nowrap;
-        background: var(--red);
+        color: #fff; font-family: 'Space Mono', monospace;
+        font-size: 1.15rem; font-weight: 700; letter-spacing: 3px;
+        padding: 1rem 0; overflow: hidden; white-space: nowrap;
+        background: linear-gradient(180deg, var(--red) 0%, var(--red-deep) 100%);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 0 14px rgba(0,0,0,0.35);
         border: none;
     }
-    .tape-top { top: 0; box-shadow: 0 2px 20px rgba(180,0,0,0.4); }
-    .tape-bottom { bottom: 0; box-shadow: 0 -2px 20px rgba(180,0,0,0.4); }
+    .tape-top { top: 0; box-shadow: 0 3px 24px rgba(180,0,0,0.5); }
+    .tape-bottom { bottom: 0; box-shadow: 0 -3px 24px rgba(180,0,0,0.5); }
     .tape span { display: inline-block; padding-left: 100%; animation: marqueeTape 32s linear infinite; }
     .tape-bottom span { animation-direction: reverse; }
     @keyframes marqueeTape { 100% { transform: translateX(-100%); } }
@@ -526,7 +577,7 @@ console.log(allMessages.length);
     .main-title {
         font-family: 'DM Serif Display', serif;
         font-size: clamp(3.2rem, 11vw, 8rem);
-        line-height: 1.05; text-align: center; margin-bottom: 3.5rem;
+        line-height: 1.05; text-align: center; margin-bottom: 1.5rem;
         display: flex; flex-direction: column; gap: 0.1rem;
     }
     .title-solid {
@@ -541,6 +592,20 @@ console.log(allMessages.length);
         text-decoration: line-through;
         text-decoration-color: var(--gold);
         text-decoration-thickness: 4px;
+    }
+
+    .birthday-wish {
+        font-family: 'DM Serif Display', serif;
+        font-style: italic;
+        font-size: clamp(1.4rem, 4vw, 2.3rem);
+        text-align: center;
+        margin-bottom: 3.5rem;
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, var(--gold-bright), #fff8e6, var(--gold));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 35px rgba(201,162,39,0.25);
     }
 
     .welcome-box {
@@ -560,7 +625,7 @@ console.log(allMessages.length);
 
     .grid-title {
         margin-bottom: 3.5rem;
-        border-bottom: 1px solid rgba(209, 0, 0, 0.2);
+        border-bottom: 6px solid rgba(209, 0, 0, 0.2);
         padding-bottom: 1.2rem;
     }
     .grid-title-inner h2 {
@@ -571,7 +636,7 @@ console.log(allMessages.length);
     .counter { color: var(--red); font-family: 'Space Mono', monospace; font-size: 1rem; }
     .grid-subtitle {
         font-family: 'Cormorant Garamond', serif; font-style: italic;
-        color: var(--ash); font-size: 1.1rem; margin-top: 0.4rem;
+        color: var(--ash); font-size: 3.1rem; margin-top: 0.4rem;
     }
 
     .grid {
@@ -732,6 +797,90 @@ console.log(allMessages.length);
     }
     .envelope-card:hover .env-shine { left: 140%; }
 
+    /* --- Sección de Ángeles --- */
+    .angels-section {
+        margin-top: 6rem;
+        padding-top: 4rem;
+        border-top: 1px solid rgba(201, 162, 39, 0.15);
+        text-align: center;
+    }
+    .angels-title-wrap {
+        display: flex; align-items: center; justify-content: center; gap: 1rem;
+        margin-bottom: 0.8rem;
+    }
+    .angel-icon {
+        font-size: 1.4rem; opacity: 0.85;
+        filter: drop-shadow(0 0 8px rgba(255,255,255,0.3));
+    }
+    .angels-title {
+        font-family: 'DM Serif Display', serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        color: #fff; font-weight: normal;
+        letter-spacing: 1px;
+        text-shadow: 0 0 25px rgba(255,255,255,0.15);
+    }
+    .angels-subtitle {
+        font-family: 'Cormorant Garamond', serif; font-style: italic;
+        color: var(--ash-light); font-size: 1.1rem;
+        margin-bottom: 3.5rem;
+    }
+    .angels-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+        justify-content: center;
+        gap: 3.5rem 2.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .angel-card .env-back {
+        background: linear-gradient(160deg, #1a1712 0%, #221f16 50%, #181510 100%);
+        border-color: rgba(232, 196, 104, 0.4);
+    }
+    .angel-card .env-flap-back,
+    .angel-card .env-flap-front {
+        background: linear-gradient(175deg, #26221a 0%, #1c1912 100%);
+        border-left-color: rgba(232, 196, 104, 0.4);
+        border-right-color: rgba(232, 196, 104, 0.4);
+    }
+    .angel-card:hover .env-flap-back,
+    .angel-card:hover .env-flap-front {
+        background: linear-gradient(175deg, #322c1e 0%, #241f15 100%);
+    }
+    .angel-card .env-corner {
+        border-color: rgba(232, 196, 104, 0.3);
+    }
+    .angel-card .env-postmark {
+        color: rgba(232, 196, 104, 0.4);
+    }
+    .angel-card .env-wax-seal {
+        background: radial-gradient(circle at 40% 35%, #f0d88a 0%, #c9a227 60%, #8a6a10 100%);
+        box-shadow:
+            inset 0 3px 6px rgba(255,255,255,0.3),
+            inset 0 -4px 8px rgba(0,0,0,0.3),
+            0 4px 12px rgba(0,0,0,0.5),
+            0 0 0 1px rgba(201,162,39,0.6),
+            0 0 20px rgba(232,196,104,0.3);
+    }
+    .angel-card:hover .env-wax-seal {
+        box-shadow:
+            inset 0 3px 6px rgba(255,255,255,0.35),
+            inset 0 -4px 8px rgba(0,0,0,0.3),
+            0 8px 20px rgba(0,0,0,0.5),
+            0 0 0 1px rgba(201,162,39,0.7),
+            0 0 26px rgba(232,196,104,0.4);
+    }
+    .angel-card .mini-seal-inner {
+        color: #2a1f00;
+        text-shadow: none;
+    }
+    .angel-card .env-sender-name {
+        color: #fff8e6;
+        text-shadow: 0 0 20px rgba(232,196,104,0.4);
+    }
+    .angel-card .env-bg-glow {
+        background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.09), transparent 70%);
+    }
+
     .site-footer {
         margin-top: 7rem; text-align: center;
         font-family: 'Cormorant Garamond', serif; font-style: italic;
@@ -747,12 +896,13 @@ console.log(allMessages.length);
 
     @media (max-width: 768px) {
         .container { padding: 5.5rem 1.2rem 4rem 1.2rem; }
-        .tape { font-size: 0.7rem; }
+        .tape { font-size: 0.85rem; letter-spacing: 1.5px; }
         .badge-wrapper { width: 150px; height: 150px; }
         .badge-center { font-size: 3.5rem; }
         .candle-flame { display: none; }
         .badge-wrapper::before { display: none; }
         .grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .angels-grid { grid-template-columns: 1fr; }
         .envelope-card { transform: none !important; min-height: 200px; }
         .wax-seal { width: 175px; height: 175px; }
         .seal-number { font-size: 3rem; }
