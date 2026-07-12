@@ -2,4 +2,4 @@
 sender: "Tino"
 type: "text"
 ---
-¡Feliz cumpleaños, Fer! Aquí va todo el texto largo de la carta que te escribió tu amigo o amiga. Puedes usar **negritas**, *cursivas* o incluso emojis 🎉. Todo lo que esté debajo de las líneas punteadas es lo que ella leerá en la página.
+Que gusto saludarte , muchas felicidades por tu cumpleaños, mis mejores deseos para tú tranquilidad, y de verdad sería fantástico verte cumpliendo  tus metas, aún no te conozco pero se que eres una buena persona , nunca te pierdas de tu foco pase lo que pase, porque la oportunidad siempre está presente. Felicidades.

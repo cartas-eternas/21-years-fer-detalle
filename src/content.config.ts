@@ -7,8 +7,8 @@ const messages = defineCollection({
     sender: z.string(),
     type: z.enum(["text", "video", "image"]),
     videoUrl: z.string().optional(),
-    imageUrl: z.string().optional(),
-    isAngel: z.boolean().optional().default(false), // true = va en la sección de Ángeles
+    imageUrls: z.array(z.string()).optional(),
+    isAngel: z.boolean().optional().default(false),
   }),
 });
 

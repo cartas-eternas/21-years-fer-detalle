@@ -16,8 +16,11 @@
     "videoUrl": {
       "type": "string"
     },
-    "imageUrl": {
-      "type": "string"
+    "imageUrls": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "isAngel": {
       "default": false,

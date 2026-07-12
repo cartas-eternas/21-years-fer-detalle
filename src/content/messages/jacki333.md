@@ -2,24 +2,24 @@
 sender: "Jackie"
 type: "text"
 ---
-݄              ⋱  ִ.  ㅤֺ    ִ  ⁝  ִ.      ㅤֺ    ִ  ⋰ㅤׄ
-⏜๊꤬〫۟࣪᷼︵ᷭ⌒֟͝⌢᮫〪ٜ︵ֶ〫࣪ ׅ⋱  ᮫ׅ    ໋𝆬 ⋮𝆬    ᮫ ໋ׅ  ⋰ ׅ ֶ࣪︵᮫ٜ⌢〫֟͝⌒〪︵۟࣪ᷭ᷼⏜๊꤬〫
-            ⚙️︎    𝕁𝕠𝕤𝕖́ 𝕃𝕦𝕚𝕤 𝔹𝕠𝕣𝕘𝕦𝕖𝕤    ⚙️︎
+<div align="center">
+⚙️ <strong>Jorge Luis Borges</strong> ⚙️
+</div>
 
-𝐃𝐞𝐬𝐩𝐮𝐞́𝐬 𝐝𝐞 𝐭𝐨𝐝𝐨 𝐥𝐚 𝐚𝐦𝐢𝐬𝐭𝐚𝐝 𝐞𝐬 𝐥𝐨 𝐪𝐮𝐞 𝐦𝐚́𝐬 𝐢𝐦𝐩𝐨𝐫𝐭𝐚,
-                 𝐩𝐨𝐫𝐪𝐮𝐞 𝐧𝐨 𝐩𝐢𝐝𝐞 𝐧𝐚𝐝𝐚. 
-𝐍𝐨 𝐞𝐬 𝐞𝐥 𝐚𝐦𝐨𝐫 𝐪𝐮𝐞 𝐬𝐢𝐞𝐦𝐩𝐫𝐞 𝐭𝐢𝐞𝐧𝐞 𝐮𝐫𝐠𝐞𝐧𝐜𝐢𝐚𝐬 𝐲
-    𝐝𝐞𝐦𝐚𝐧𝐝𝐚𝐬,𝐧𝐢 𝐥𝐚 𝐚𝐝𝐦𝐢𝐫𝐚𝐜𝐢𝐨́𝐧 𝐪𝐮𝐞 𝐞𝐬𝐩𝐞𝐫𝐚
-                    𝐜𝐨𝐫𝐫𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐧𝐜𝐢𝐚.
- 𝐋𝐚 𝐚𝐦𝐢𝐬𝐭𝐚𝐝 𝐧𝐨 𝐧𝐞𝐜𝐞𝐜𝐢𝐭𝐚 𝐟𝐫𝐞𝐜𝐮𝐞𝐧𝐜𝐢𝐚 𝐧𝐢 𝐩𝐚𝐥𝐚𝐛𝐫𝐚𝐬.
-𝐁𝐚𝐬𝐭𝐚 𝐜𝐨𝐧 𝐬𝐚𝐛𝐞𝐫 𝐪𝐮𝐞 𝐚𝐥𝐠𝐮𝐢𝐞𝐧 𝐞𝐬𝐭𝐚́ 𝐚𝐡𝐢́, 𝐝𝐞𝐥 𝐨𝐭𝐫𝐨 𝐥𝐚𝐝𝐨
-    𝐝𝐞 𝐥𝐚 𝐧𝐨𝐜𝐡𝐞, 𝐞𝐧 𝐞𝐥 𝐬𝐢𝐥𝐞𝐧𝐜𝐢𝐨 𝐪𝐮𝐞 𝐜𝐨𝐦𝐩𝐚𝐫𝐭𝐢𝐦𝐨𝐬
-                𝐚𝐮𝐧𝐪𝐮𝐞 𝐧𝐨 𝐧𝐨𝐬 𝐯𝐞𝐚𝐦𝐨𝐬.
-𝐄𝐥 𝐚𝐦𝐨𝐫 𝐩𝐮𝐞𝐝𝐞 𝐬𝐞𝐫 𝐭𝐞𝐦𝐩𝐞𝐬𝐭𝐮𝐨𝐬𝐨, 𝐩𝐞𝐫𝐨 𝐞𝐥 𝐚𝐦𝐨𝐫 𝐞𝐬 𝐮𝐧
-𝐩𝐮𝐞𝐫𝐭𝐨, 𝐲 𝐞𝐧 𝐬𝐮 𝐪𝐮𝐢𝐞𝐭𝐮𝐝 𝐡𝐚𝐲 𝐮𝐧𝐚 𝐟𝐨𝐫𝐦𝐚 𝐝𝐞 𝐞𝐭𝐞𝐫𝐧𝐢𝐝𝐚𝐝
-        ⫷ ⏤͟͟͞͞ ✦ . ⏤͟͟͞͞ ˙* ⏤͟͟͞͞ .˙⏤͟͟͞͞ ∘ ˙ ⏤͟͟͞͞  ֪ 𓍯
-		
-.       ☆.。．：・゜☆゜・：．。.☆      ．
+<br/>
+
+> **Después de todo la amistad es lo que más importa, porque no pide nada.** 
+> **No es el amor que siempre tiene urgencias y demandas, ni la admiración que espera correspondencia.**
+>
+> **La amistad no necesita frecuencia ni palabras. Basta con saber que alguien está ahí, del otro lado de la noche, en el silencio que compartimos aunque no nos veamos.**
+>
+> **El amor puede ser tempestuoso, pero la amistad es un puerto, y en su quietud hay una forma de eternidad.**
+
+<br/>
+
+<div align="center">
+  ✧ .* ∘ ˙✦ • ✤ • ✦   .* ∘ ˙✧
+</div>
 
 𝑯𝒂𝒄𝒆 𝒖𝒏𝒐𝒔 𝒅𝒊́𝒂𝒔 𝒍𝒆𝒊́ 𝒆𝒔𝒕𝒆 𝒑𝒐𝒆𝒎𝒂 𝒚 𝒎𝒆 𝒂𝒄𝒐𝒓𝒅𝒆́ 𝒅𝒆 𝒕𝒊,
  𝒏𝒐 𝒑𝒖𝒆𝒅𝒐 𝒄𝒓𝒆𝒆𝒓 𝒄𝒖𝒂́𝒏𝒕𝒐 𝒕𝒊𝒆𝒎𝒑𝒐 𝒉𝒂 𝒑𝒂𝒔𝒂𝒅𝒐 𝒅𝒆𝒔𝒅𝒆
@@ -44,4 +44,6 @@ type: "text"
 
 ✰𝐻𝑎𝑝𝑝𝑦 𝑏𝑖𝑟𝑡ℎ𝑑𝑎𝑦 𝑚𝑜𝑚, 𝑠𝑡𝑎𝑦 𝑎𝑙𝑖𝑣𝑒 𝑎𝑛𝑑 𝑝𝑢𝑠ℎ 𝑜𝑛 𝑡𝑟𝑜𝑢𝑔𝑡ℎ ✰
 
-.       ☆.。．：・゜☆゜・：．。.☆    ．
+<div align="center">
+  ✧ .* ∘ ˙✦ • ✤ • ✦   .* ∘ ˙✧
+</div>

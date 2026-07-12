@@ -1,7 +1,8 @@
 ---
 sender: "Rodri (Pato)"
 type: "image"
-imageUrl: "/images/pato.jpg"
+imageUrls:
+  - "/images/pato.jpg"
 ---
 
 ¡Feliz cumpleaños!

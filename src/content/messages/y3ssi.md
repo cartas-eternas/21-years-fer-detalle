@@ -1,5 +1,9 @@
 ---
-sender: "Yesenia"
-type: "text"
+sender: "Yesenia & Fati"
+type: "image"
+imageUrls:
+  - "/images/fati-dibujo.png"
+  - "/images/fati-corazon.png"
+  - "/images/fati-jax.png"
 ---
-¡Feliz cumpleaños, Fer! Aquí va todo el texto largo de la carta que te escribió tu amigo o amiga. Puedes usar **negritas**, *cursivas* o incluso emojis 🎉. Todo lo que esté debajo de las líneas punteadas es lo que ella leerá en la página.
+Felicidades Fer, te deseo un feliz cumpleaños acompañada de tus seres queridos, nosotros aquí estamos cerca para cualquier cosa, y gracias por querer a mi hijo. Mis mejores deseos.

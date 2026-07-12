@@ -4,4 +4,4 @@ type: "text"
 isAngel: true
 ---
 
-Aquí escribes la dedicatoria para el papá de Mafi...
+Aquel hombre que te acompañó desde la niñez, que te vió nacer, y que te vió crecer, ahora está en otro lugar, un lugar dónde nuestra alma y mente aún no pueden entrar, pero que en nuestro corazón siempre estará.
