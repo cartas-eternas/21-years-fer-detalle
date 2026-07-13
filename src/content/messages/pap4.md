@@ -1,7 +1,11 @@
 ---
 sender: "Ángel"
-type: "text"
+type: "image"
+imageUrls:
+  - "/images/papa-1.jpg"
+  - "/images/papa-2.jpg"
 isAngel: true
+
 ---
 
 De aquel hombre que dedicó su corazón y cuerpo a ti y tu familia, de aquel hombre que formó la figura paterna, de aquel hombre que representó el ejemplo de fortaleza por encima de su persona, de aquel hombre que formó a la mujer que eres, y de aquel hombre que caminará en alma junto a ti, donde su memoria y nombre resaltará en cualquier éxito de tu vida.
@@ -18,4 +22,4 @@ Que su ejemplo nunca te abandone, que la humildad que te incrustó nunca se pier
 >
 > — **“Laberinto”, Juan Son**
 
-Dedicatoria que te hago en nombre de _Angel Juárez Albarrán_.
+Dedicatoria que te hago en nombre de tu papito _Angel Juárez Albarrán_.
